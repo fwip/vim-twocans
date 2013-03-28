@@ -19,6 +19,10 @@ function! TCLogin()
 endfunction
 
 function! TCGetQuestion()
+  if !g:TC_logged_in
+    TCLogin()
+  endif
+
   let url = "http://twocansandstring.com/apiw/qa/getquestion"
 
   execute 'r !curl -s -b ' . g:tc_cookie_file . ' ' . url
