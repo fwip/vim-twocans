@@ -5,7 +5,7 @@
 " License: BSD
 
 
-function! TCLogin()
+function! twocans#Login()
   if ! (exists('g:TC_logged_in') && g:TC_logged_in)
     finish
   endif
@@ -18,9 +18,9 @@ function! TCLogin()
   let g:TC_logged_in = 1
 endfunction
 
-function! TCGetQuestion()
+function! twocans#GetQuestion()
   if !g:TC_logged_in
-    TCLogin()
+    call twocans#Login()
   endif
 
   let url = "http://twocansandstring.com/apiw/qa/getquestion"

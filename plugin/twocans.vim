@@ -17,4 +17,4 @@ endif
 let g:tc_username = 'fwip_tests_things'
 let g:tc_password  = 'fwippy'
 let g:TC_logged_in = 0
-nnoremap <leader>tc :call twocans#TCGetQuestion()<CR>
+nnoremap <leader>tc :call twocans#GetQuestion()<CR>
