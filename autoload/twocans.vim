@@ -30,3 +30,11 @@ function! twocans#GetQuestion()
   execute 's/\^stext\^s/ /'
   execute 's/\^\^\?//'
 endfunction
+
+function! twocans#OpenBuffer()
+  execute '11new'
+  for i in range(2)
+    call twocans#GetQuestion()
+  endfor
+
+endfunction
