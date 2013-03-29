@@ -31,9 +31,16 @@ function! twocans#GetQuestion()
   execute 's/\^\^\?//'
 endfunction
 
+function! twocans#AnswerQuestion(line)
+  execute '5new'
+  call setline('.', a:line)
+endfunction
+
 function! twocans#OpenBuffer()
   execute '11new'
-  for i in range(2)
+  nnoremap <buffer> q :call twocans#GetQuestion()<CR>
+  nnoremap <buffer> a :call twocans#AnswerQuestion(getline('.'))<CR>
+  for i in range(0)
     call twocans#GetQuestion()
   endfor
 
