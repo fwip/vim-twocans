@@ -11,7 +11,7 @@ endif
 
 let g:loaded_twocans_vim = 1
 if ! exists('g:tc_cookie_file')
-  let g:tc_cookie_file = '~/.tccookie'
+  let g:tc_cookie_file = $HOME . "/.tccookie"
 endif
 
 let g:tc_username = 'fwip_tests_things'

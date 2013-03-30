@@ -6,14 +6,10 @@
 
 
 function! twocans#Login()
-  if ! (exists('g:TC_logged_in') && g:TC_logged_in)
-    finish
-  endif
 
   let submit = 'Loggest+In'
   let loginurl = 'http://twocansandstring.com/login/'
   let params = '-F login_username=' . g:tc_username . ' -F login_password=' . g:tc_password . ' -F submit=' . submit
-  let cookie = '/home/jnelson/.tccookie'
   execute '!curl '  . params . ' '. loginurl . ' -c ' . g:tc_cookie_file
   let g:TC_logged_in = 1
 endfunction
