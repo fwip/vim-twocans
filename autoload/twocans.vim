@@ -27,15 +27,31 @@ function! twocans#GetQuestion()
   execute 's/\^\^\?//'
 endfunction
 
-function! twocans#AnswerQuestion(line)
+function! twocans#OpenAnswerBuffer(line)
   execute '5new'
   call setline('.', a:line)
+endfunction
+
+function! twocans#AnswerQuestion()
+  let id = substitute(getline('1'), '\s.*', '', '')
+
+  let answer = join(getline(2,'$'), "\n")
+  let answer = substitute(answer, '^\n\+', '', '')
+  let answer = substitute(answer, '\n\+$', '', '')
+  call twocans#SendAnswer(id, answer)
+endfunction
+
+function! twocans#SendAnswer(id, answer)
+  let answer = substitute(a:answer, '\n', '\\\\n', 'g')
+  let url = 'http://twocansandstring.com/apiw/qa/answer/' . a:id . '/'
+  let params = "-d text='" . answer . "'"
+  execute 'r !curl ' . params . ' ' . url . ' -b ' . g:tc_cookie_file . ' -s '
 endfunction
 
 function! twocans#OpenBuffer()
   execute '11new'
   nnoremap <buffer> q :call twocans#GetQuestion()<CR>
-  nnoremap <buffer> a :call twocans#AnswerQuestion(getline('.'))<CR>
+  nnoremap <buffer> a :call twocans#OpenAnswerBuffer(getline('.'))<CR>
   for i in range(0)
     call twocans#GetQuestion()
   endfor
