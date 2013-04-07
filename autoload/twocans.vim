@@ -10,7 +10,7 @@ function! twocans#Login()
   let submit = 'Loggest+In'
   let loginurl = 'http://twocansandstring.com/login/'
   let params = '-F login_username=' . g:tc_username . ' -F login_password=' . g:tc_password . ' -F submit=' . submit
-  execute '!curl '  . params . ' '. loginurl . ' -c ' . g:tc_cookie_file
+  execute 'r !curl '  . params . ' '. loginurl . ' -c ' . g:tc_cookie_file . ' -s '
   let g:TC_logged_in = 1
 endfunction
 
