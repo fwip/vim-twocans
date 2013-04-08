@@ -42,7 +42,7 @@ function! twocans#AnswerQuestion()
 endfunction
 
 function! twocans#SendAnswer(id, answer)
-  let answer = substitute(a:answer, '\n', '\\\\n', 'g')
+  let answer = substitute(a:answer, '\n', '', 'g')
   let url = 'http://twocansandstring.com/apiw/qa/answer/' . a:id . '/'
   let params = "-d text='" . answer . "'"
   execute 'r !curl ' . params . ' ' . url . ' -b ' . g:tc_cookie_file . ' -s '
